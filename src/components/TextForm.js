@@ -20,7 +20,6 @@ export default function TextForm(props) {
 
     const handleCopyClick = ()=>{
         navigator.clipboard.writeText(text);
-        console.log('Content copied to Clipboard'); 
         props.showAlert("Copied to Clipboard", "success");
     }
 
@@ -64,7 +63,7 @@ export default function TextForm(props) {
          style={{color: props.mode === 'dark'?'whitesmoke':'#2b3035'}}
         >
         <h2>Your text summary</h2>
-        <p>{text.split(" ").filter((element)=>{return element.length!==0}).length} words, {text.length} characters</p>
+        <p>{text.split(/\s+/).filter((element)=>{return element.length!==0}).length} words, {text.length} characters</p>
         <p>{0.008 * text.split(" ").filter((element)=>{return element.length!==0}).length} Minutes to read</p>
         <h2>Preview</h2>
         <p>{text.length>0?text:"Nothing to preview."}</p>
