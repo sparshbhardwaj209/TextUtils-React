@@ -43,7 +43,7 @@ export default function TextForm(props) {
     <div className="container"
          style={{color: props.mode === 'dark'?'whitesmoke':'#2b3035'}}
         >
-      <h1>{props.heading}</h1>
+      <h1 className="mb-4">{props.heading}</h1>
       <div className="mb-3">
         <textarea
           className="form-control"
@@ -54,20 +54,20 @@ export default function TextForm(props) {
           style={{backgroundColor: props.mode === 'dark'?'#2b3035':'whitesmoke', color: props.mode === 'dark'?'whitesmoke':'#2b3035'}}
         ></textarea>
       </div>
-      <button className={`btn btn-${props.mode === 'dark'?'secondary':'primary'} mx-1 my-2`} onClick={handleUpClick}>Uppercase</button>
-      <button className={`btn btn-${props.mode === 'dark'?'secondary':'primary'} mx-1 my-2`} onClick={handleLoClick}>Lowercase</button>
-      <button className={`btn btn-${props.mode === 'dark'?'secondary':'primary'} mx-1 my-2`} onClick={handleCopyClick}>Copy</button>
-      <button className={`btn btn-${props.mode === 'dark'?'secondary':'primary'} mx-1 my-2`} onClick={handleClearClick}>Clear</button>
-      <button className={`btn btn-${props.mode === 'dark'?'secondary':'primary'} mx-1 my-2`} onClick={handleExtraSpaces}>Remove Extra Spaces</button>
+      <button disabled={text.length===0} className={`btn btn-${props.mode === 'dark'?'secondary':'primary'} mx-1 my-11`} onClick={handleUpClick}>Uppercase</button>
+      <button disabled={text.length===0} className={`btn btn-${props.mode === 'dark'?'secondary':'primary'} mx-1 my-1`} onClick={handleLoClick}>Lowercase</button>
+      <button disabled={text.length===0} className={`btn btn-${props.mode === 'dark'?'secondary':'primary'} mx-1 my-1`} onClick={handleCopyClick}>Copy</button>
+      <button disabled={text.length===0} className={`btn btn-${props.mode === 'dark'?'secondary':'primary'} mx-1 my-1`} onClick={handleClearClick}>Clear</button>
+      <button disabled={text.length===0} className={`btn btn-${props.mode === 'dark'?'secondary':'primary'} mx-1 my-1`} onClick={handleExtraSpaces}>Remove Extra Spaces</button>
     </div>
     <div className="container my-3"
          style={{color: props.mode === 'dark'?'whitesmoke':'#2b3035'}}
         >
         <h2>Your text summary</h2>
-        <p>{text.split(" ").length} words, {text.length} characters</p>
-        <p>{0.008 * text.split(" ").length} Minutes to read</p>
+        <p>{text.split(" ").filter((element)=>{return element.length!==0}).length} words, {text.length} characters</p>
+        <p>{0.008 * text.split(" ").filter((element)=>{return element.length!==0}).length} Minutes to read</p>
         <h2>Preview</h2>
-        <p>{text.length>0?text:"Enter something in the textbox above to preview it here"}</p>
+        <p>{text.length>0?text:"Nothing to preview."}</p>
     </div>
     </>
   );
